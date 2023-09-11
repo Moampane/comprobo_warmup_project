@@ -1,45 +1,7 @@
 # CompRobo WarmUp Project
 
 ## Project Overview
-The goal of this project is to program the Neato robot to execute a set of behaviors using ROS 2 Humble. Through the implementation of these behaviors, we aim to gain practical experience with robotics programming, ROS, and debugging techniques. The behaviors include:
-
-Simple visualizations using rviz
-Teleoperation (Teleop)
-Driving the robot in a square path
-Wall following behavior
-Finite state controller
-
-## Code Structure
-Our code is organized within a ROS package called warmup_project. The package structure includes the following directories and files:
-warmup_project/
-├── bags/
-│   ├── drive_square_demo.bag
-│   ├── finite_state_controller_demo.bag
-│   ├── obstacle_avoider_demo.bag
-│   ├── person_follower_demo.bag
-│   ├── test_drive.bag
-│   └── wall_follower_demo.bag
-├── resource/
-│   ├── warmup_project
-├── test/
-│   ├── test_copyright.py
-│   ├── test_flake8.py
-│   └── test_pep257.py
-├── CMakeLists.txt
-├── package.xml
-├── setup.py
-└── warmup_project/
-    ├── __init__.py
-    ├── teleop.py
-    ├── drive_square.py
-    ├── finite_state_controller.py
-    ├── obstacle_avoider.py
-    ├── person_follower.py
-    ├── wall_follower.py
-    └── README.md
-
-This structure organizes our code, configuration files, and resources neatly within a ROS package.
-
+The goal of this project is to program the Neato robot to execute a set of behaviors using ROS 2 Humble. Through the implementation of these behaviors, we aim to gain practical experience with robotics programming, ROS, and debugging techniques.
 ## Behavior Descriptions
 ### Behavior 1: Simple Visualizations using RViz
 Problem: The goal is to visualize data from the simulated Neato robot using RViz.
