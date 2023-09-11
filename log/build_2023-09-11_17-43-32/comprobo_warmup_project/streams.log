@@ -1,0 +1,21 @@
+[0.315s] Invoking command in '/home/mampane/ros2_ws/src/comprobo_warmup_project/build/comprobo_warmup_project': PYTHONPATH=/home/mampane/ros2_ws/src/comprobo_warmup_project/build/comprobo_warmup_project/prefix_override:/home/mampane/ros2_ws/src/comprobo_warmup_project/install/comprobo_warmup_project/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/mampane/ros2_ws/src/comprobo_warmup_project/build/comprobo_warmup_project/build --no-deps install_data
+[0.452s] running develop
+[0.452s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.452s]   warnings.warn(
+[0.453s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.453s]   warnings.warn(
+[0.531s] running egg_info
+[0.531s] writing comprobo_warmup_project.egg-info/PKG-INFO
+[0.531s] writing dependency_links to comprobo_warmup_project.egg-info/dependency_links.txt
+[0.531s] writing entry points to comprobo_warmup_project.egg-info/entry_points.txt
+[0.531s] writing requirements to comprobo_warmup_project.egg-info/requires.txt
+[0.531s] writing top-level names to comprobo_warmup_project.egg-info/top_level.txt
+[0.532s] reading manifest file 'comprobo_warmup_project.egg-info/SOURCES.txt'
+[0.532s] writing manifest file 'comprobo_warmup_project.egg-info/SOURCES.txt'
+[0.533s] running build_ext
+[0.533s] Creating /home/mampane/ros2_ws/src/comprobo_warmup_project/install/comprobo_warmup_project/lib/python3.10/site-packages/comprobo-warmup-project.egg-link (link to .)
+[0.533s] Installing teleop script to /home/mampane/ros2_ws/src/comprobo_warmup_project/install/comprobo_warmup_project/lib/comprobo_warmup_project
+[0.533s] 
+[0.533s] Installed /home/mampane/ros2_ws/src/comprobo_warmup_project/build/comprobo_warmup_project
+[0.533s] running install_data
+[0.549s] Invoked command in '/home/mampane/ros2_ws/src/comprobo_warmup_project/build/comprobo_warmup_project' returned '0': PYTHONPATH=/home/mampane/ros2_ws/src/comprobo_warmup_project/build/comprobo_warmup_project/prefix_override:/home/mampane/ros2_ws/src/comprobo_warmup_project/install/comprobo_warmup_project/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/mampane/ros2_ws/src/comprobo_warmup_project/build/comprobo_warmup_project/build --no-deps install_data
