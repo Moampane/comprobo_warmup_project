@@ -1,4 +1,4 @@
-# comprobo_warmup_project
+# CompRobo WarmUp Project
 
 ## Project Overview
 The goal of this project is to program the Neato robot to execute a set of behaviors using ROS 2 Humble. Through the implementation of these behaviors, we aim to gain practical experience with robotics programming, ROS, and debugging techniques. The behaviors include:
@@ -10,7 +10,7 @@ Wall following behavior
 Finite state controller
 
 ## Code Structure
-Our code will be organized within a ROS package called warmup_project. The package structure will include the following directories and files:
+Our code is organized within a ROS package called warmup_project. The package structure includes the following directories and files:
 warmup_project/
 ├── bags/
 │   ├── drive_square_demo.bag
@@ -51,8 +51,8 @@ Challenges: None at this stage.
 
 ### Behavior 2: Teleoperation (Teleop)
 Problem: We need to teleoperate the robot using custom Python code.
-Approach: We'll write a ROS node that listens to keyboard input and publishes commands to control the robot's motion. This includes commands to move forward, backward, turn left, turn right, and stop.
-Challenges: Handling keyboard input and converting it into meaningful robot commands.
+Approach: We wrote a ROS node that listens to keyboard input and publishes commands to control the robot's motion. This includes commands to move forward, backward, turn left, turn right, and stop.
+Challenges: Handling keyboard input and converting it into meaningful robot commands. After solving this, terminating the teleop using Ctrl+C was proving difficult, but the skeleton code was helpful in getting it working.
 
 ### Behavior 3: Driving in a Square
 Problem: We aim to make the robot move in a 1m by 1m square path.
@@ -90,5 +90,3 @@ Python Programming: Enhanced our Python programming skills in the context of rob
 Debugging Techniques: Learned effective debugging strategies, especially using RViz.
 Sensor Integration: Explored the integration of sensor data into robot control algorithms.
 Behavior Design: Designed and implemented reactive control strategies and finite state controllers for different robot behaviors.
-
-We look forward to applying these skills to more complex robotics projects in the future.
