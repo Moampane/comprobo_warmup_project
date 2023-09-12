@@ -32,6 +32,10 @@ Challenges: Accurate wall detection, as the laser scan would often pick up unexp
 
 ![Wall Follower](https://github.com/Moampane/comprobo_warmup_project/blob/main/GIFs/Wall-Follower-min.gif)
 
+### Behavior 5: Person Following
+
+[![](https://mermaid.ink/img/pako:eNqNkl1rwjAUhv9KOFcRqqu13WgHA792NbcxZRejIJk9almbSJLq_PrvS1OKeiGu5KJ5z_OeD3L2MBMJQgQLyVZLMhk8xjzmhKjiu1I-3sbe9NUwqpTPAu8oleDTZ5FlYoPSMhVCSJfSF6ZQkvGM8UajlnuUVi5Su06xPqWTTap0rSBPqk7Oe1mnu4s6A0pL7abnM1UFy9Id06ngtXlI6YVORqgUW6C6SHeWtUuazaeDQq6EnOZqoe7skOWMB9IriZ4lFihy1HJbMXaqA-mf4uvzqhU0YvIH5YEMT5Seexf3K3Ut0b9e1_Y1-FfdG1RXSra1KDiQo8xZmpjF2ZfWGPQSc4whMr8JzlmR6RhifjQoK7QYb_kMIi0LdKBYJUzjIGXmgXKI5ixTRsUk1UKOqmW0O-nAivEvIfLaaK4Q7eEXoqDltsO2Oa4f-t696zuwhei-0_I7QeCFbSN5nYcwODqwswncVlh9vtsJgxI6_gF5jPZ2?type=png)](https://mermaid.live/edit#pako:eNqNkl1rwjAUhv9KOFcRqqu13WgHA792NbcxZRejIJk9almbSJLq_PrvS1OKeiGu5KJ5z_OeD3L2MBMJQgQLyVZLMhk8xjzmhKjiu1I-3sbe9NUwqpTPAu8oleDTZ5FlYoPSMhVCSJfSF6ZQkvGM8UajlnuUVi5Su06xPqWTTap0rSBPqk7Oe1mnu4s6A0pL7abnM1UFy9Id06ngtXlI6YVORqgUW6C6SHeWtUuazaeDQq6EnOZqoe7skOWMB9IriZ4lFihy1HJbMXaqA-mf4uvzqhU0YvIH5YEMT5Seexf3K3Ut0b9e1_Y1-FfdG1RXSra1KDiQo8xZmpjF2ZfWGPQSc4whMr8JzlmR6RhifjQoK7QYb_kMIi0LdKBYJUzjIGXmgXKI5ixTRsUk1UKOqmW0O-nAivEvIfLaaK4Q7eEXoqDltsO2Oa4f-t696zuwhei-0_I7QeCFbSN5nYcwODqwswncVlh9vtsJgxI6_gF5jPZ2)
+
 ### Behavior 5: Finite State Controller
 Problem: We need to create a finite state controller for managing different robot behaviors and transitions between states.
 Approach: We'll define states, actions, and transitions for the controller. The states could include behaviors like teleoperation, square driving, and wall following. Transitions between states will depend on certain conditions, such as user input or sensor data.
