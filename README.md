@@ -14,17 +14,23 @@ Challenges: None at this stage.
 ### Behavior 2: Teleoperation (Teleop)
 Problem: We need to teleoperate the robot using custom Python code.
 Approach: We wrote a ROS node that listens to keyboard input and publishes commands to control the robot's motion. This includes commands to move forward, backward, turn left, turn right, and stop.
-Challenges: Handling keyboard input and converting it into meaningful robot commands. After solving this, terminating the teleop using Ctrl+C was proving difficult, but the skeleton code was helpful in getting it working.
+Challenges: Terminating the teleop using Ctrl+C was proving difficult, but the skeleton code was helpful in getting it working.
+
+![Teleop](https://github.com/Moampane/comprobo_warmup_project/blob/main/GIFs/Telep-min.gif)
 
 ### Behavior 3: Driving in a Square
 Problem: We aim to make the robot move in a 1m by 1m square path.
-Approach: We can achieve this using either timed movements (e.g., turn at a fixed speed for a specific duration) or by utilizing the robot's odometry to control its path accurately.
-Challenges: Precision control to ensure the robot follows the desired square path.
+Approach: We used the Neato's odometry to have it keep track of its position in x and y relative to the starting point. Once it determined it had move 1m forward, it turned 90 degrees to the left, doing this 3 times to drive in a square.
+Challenges: None for this stage (except an odd interaction with the odom getting strange values if running a different behaviour prior to Drive-Squre).
+
+![Driving in a Square](https://github.com/Moampane/comprobo_warmup_project/blob/main/GIFs/Drive-Square-min.gif)
 
 ### Behavior 4: Wall Following
 Problem: The objective is to make the robot follow a wall while maintaining a parallel alignment to the wall.
-Approach: We'll implement a control strategy that enables the robot to move forward while adjusting its direction to remain parallel to the nearest wall.
-Challenges: Accurate wall detection, maintaining a consistent distance from the wall.
+Approach: We implemented a control strategy that checks the distance value from the laser scan at 45 and 135 degrees (relative to the Neato from the wall). It compares the difference to a pre-defined threshold, with turning adjustments made based on the proximity to the wall.
+Challenges: Accurate wall detection, as the laser scan would often pick up unexpected 0.0 readings causing the Neato to go into a continuous left-right loop without any forward progress; we fixed this by havinhg it constantly moving forwards at a slower speed, turning to adjust itslef as required.
+
+![Wall Follower](https://github.com/Moampane/comprobo_warmup_project/blob/main/GIFs/Wall-Follower-min.gif)
 
 ### Behavior 5: Finite State Controller
 Problem: We need to create a finite state controller for managing different robot behaviors and transitions between states.
@@ -36,14 +42,11 @@ During the project, we encountered various challenges such as:
 Precise control of robot motion for tasks like driving in a square.
 Handling user input effectively for teleoperation.
 Accurate detection and control for wall following.
-Designing a robust finite state controller with clear state transitions.
 
 ## Future Improvements
 If we had more time, we would consider the following improvements:
 Enhancing the user interface for teleoperation.
 Fine-tuning control algorithms for smoother motion.
-Implementing obstacle avoidance strategies.
-Integrating computer vision for advanced behaviors like person following.
 
 ## Key Takeaways
 From this project, we have learned valuable lessons for future robotic programming projects:
@@ -51,4 +54,3 @@ ROS and Robot Control: Gained proficiency in ROS and its usage for controlling r
 Python Programming: Enhanced our Python programming skills in the context of robotics.
 Debugging Techniques: Learned effective debugging strategies, especially using RViz.
 Sensor Integration: Explored the integration of sensor data into robot control algorithms.
-Behavior Design: Designed and implemented reactive control strategies and finite state controllers for different robot behaviors.
