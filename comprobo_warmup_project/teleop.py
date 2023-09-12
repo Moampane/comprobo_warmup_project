@@ -35,7 +35,7 @@ class TeleopNode(Node):
             msg.angular.z = -0.3
             print("turn right")
         if key == '\x03':
-            rclpy.shutdown()
+            raise KeyboardInterrupt
         self.pub.publish(msg)
 
 def getKey():
@@ -49,7 +49,10 @@ def main():
     print('Hi from comprobo_warmup_project.')
     rclpy.init()
     node = TeleopNode()
-    rclpy.spin(node)
-
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        rclpy.shutdown()
+        
 if __name__ == '__main__':
     main()
