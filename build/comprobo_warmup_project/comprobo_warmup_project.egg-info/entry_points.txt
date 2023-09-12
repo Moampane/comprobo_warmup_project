@@ -1,3 +1,4 @@
 [console_scripts]
+drive_square = comprobo_warmup_project.drive_square:main
 teleop = comprobo_warmup_project.teleop:main
 

@@ -2,6 +2,7 @@ package.xml
 setup.cfg
 setup.py
 comprobo_warmup_project/__init__.py
+comprobo_warmup_project/drive_square.py
 comprobo_warmup_project/teleop.py
 comprobo_warmup_project.egg-info/PKG-INFO
 comprobo_warmup_project.egg-info/SOURCES.txt
