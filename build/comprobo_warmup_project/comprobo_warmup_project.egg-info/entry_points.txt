@@ -1,4 +1,5 @@
 [console_scripts]
 drive_square = comprobo_warmup_project.drive_square:main
 teleop = comprobo_warmup_project.teleop:main
+wall_follower = comprobo_warmup_project.wall_follower:main
 
