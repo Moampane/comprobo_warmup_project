@@ -25,6 +25,7 @@ setup(
             'wall_follower = comprobo_warmup_project.wall_follower:main',
             'person_follower = comprobo_warmup_project.person_follower:main',
             'obstacle_avoider = comprobo_warmup_project.obstacle_avoider:main',
+            'finite_state_controller = comprobo_warmup_project.finite_state_controller:main',
         ],
     },
 )
