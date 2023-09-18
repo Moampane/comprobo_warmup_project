@@ -2,7 +2,6 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
-from math import sin, cos, radians, atan, sqrt
 
 class ObstacleAvoiderNode(Node):
     def __init__(self):
@@ -11,50 +10,52 @@ class ObstacleAvoiderNode(Node):
         self.timer = self.create_timer(timer_period, self.run_loop)
         self.scan = self.create_subscription(LaserScan, 'scan', self.handle_scan, 10)
         self.cmd_vel = self.create_publisher(Twist, 'cmd_vel', 10)
-        self.obstacle_coi = 0.7
-        self.delta_x = 0.0
-        self.delta_y = 0.0
-        self.smallest_dist = 0.0
+        self.inner_left = [0.0]
+        self.inner_right = [0.0]
+        self.outer_left = [0.0]
+        self.outer_right = [0.0]
+        self.smallest_dist = 100.0
 
     def handle_scan(self, msg:LaserScan):
-        self.delta_x = 0.0
-        self.delta_y = 0.0
         self.smallest_dist = 100.0
-        for i in range(len(msg.ranges)):
-            if msg.ranges[i] < self.obstacle_coi and msg.ranges[i]!=0:
-                self.delta_x-=0.05*(self.obstacle_coi-msg.ranges[i])*cos(radians(i))
-                self.delta_y-=0.05*(self.obstacle_coi-msg.ranges[i])*sin(radians(i))
-        
-        for dist in msg.ranges[0:45]:
-            if dist < self.smallest_dist and dist > 0.0:
-                self.smallest_dist = dist
+        self.inner_left = msg.ranges[0:30]
+        self.inner_right = msg.ranges[330:360]
+        self.outer_left = msg.ranges[90:120]
+        self.outer_right = msg.ranges[240:270]
 
-        for dist in msg.ranges[315:360]:
-            if dist < self.smallest_dist and dist > 0.0:
-                self.smallest_dist = dist
+        for i in range(len(self.inner_left)):
+            if self.inner_left[i] != 0.0 and self.inner_left[i] < self.smallest_dist:
+                self.smallest_dist = self.inner_left[i]
+            if self.inner_right[i] != 0.0 and self.inner_right[i] < self.smallest_dist:
+                self.smallest_dist = self.inner_right[i]
 
     def run_loop(self):
         msg = Twist()
+        msg.angular.z = 0.0
         msg.linear.x = 0.0
+        self.turn_input = 0.0
 
-        if self.delta_x != 0.0:
-            angular_speed = -6.0*(atan(radians(self.delta_y/self.delta_x)))
-            if angular_speed > 3.0:
-                msg.angular.z = 3.0
-            elif angular_speed < -3.0:
-                msg.angular.z = -3.0
-            else:
-                msg.angular.z = angular_speed
-        else:
-            msg.angular.z = 0.0
+        for i in range(len(self.inner_left)):
+            if self.inner_right[i] != 0.0:
+                self.turn_input += 1/len(self.inner_left)/self.inner_right[i]
 
-        linear_speed = 1.0*(self.smallest_dist-0.3)
+            if self.inner_left[i] != 0.0:
+                self.turn_input -= 1/len(self.inner_left)/self.inner_left[i]
 
-        if linear_speed == 0.0 or linear_speed > 100:
-            msg.linear.x = 0.05
-        else:
-            msg.linear.x = linear_speed
+        for i in range(len(self.outer_right)):
+            if self.outer_left[i] != 0.0:
+                self.turn_input += 0.1/len(self.outer_right)/self.outer_left[i]
 
+            if self.outer_right[i] != 0.0:
+                self.turn_input -= 0.1/len(self.outer_right)/self.outer_right[i]
+
+        msg.angular.z = self.turn_input
+            
+        if self.smallest_dist > 0.3:
+            msg.linear.x = self.smallest_dist*0.1
+
+        # print(self.smallest_dist)
+        
         self.cmd_vel.publish(msg)
 
 def main():
@@ -62,6 +63,7 @@ def main():
     node = ObstacleAvoiderNode()
     rclpy.spin(node)
     rclpy.shutdown()
+    print('works')
 
 if __name__ == '__main__':
     main()
