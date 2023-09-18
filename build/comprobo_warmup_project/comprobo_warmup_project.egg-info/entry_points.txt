@@ -1,5 +1,6 @@
 [console_scripts]
 drive_square = comprobo_warmup_project.drive_square:main
+obstacle_avoider = comprobo_warmup_project.obstacle_avoider:main
 person_follower = comprobo_warmup_project.person_follower:main
 teleop = comprobo_warmup_project.teleop:main
 wall_follower = comprobo_warmup_project.wall_follower:main
