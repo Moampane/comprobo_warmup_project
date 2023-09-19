@@ -12,16 +12,13 @@ class ObstacleAvoiderNode(Node):
         self.cmd_vel = self.create_publisher(Twist, 'cmd_vel', 10)
         self.inner_left = [0.0]
         self.inner_right = [0.0]
-        self.outer_left = [0.0]
-        self.outer_right = [0.0]
         self.smallest_dist = 100.0
+        self.trapped = False
 
     def handle_scan(self, msg:LaserScan):
         self.smallest_dist = 100.0
         self.inner_left = msg.ranges[0:30]
         self.inner_right = msg.ranges[330:360]
-        self.outer_left = msg.ranges[90:120]
-        self.outer_right = msg.ranges[240:270]
 
         for i in range(len(self.inner_left)):
             if self.inner_left[i] != 0.0 and self.inner_left[i] < self.smallest_dist:
@@ -36,23 +33,26 @@ class ObstacleAvoiderNode(Node):
         self.turn_input = 0.0
 
         for i in range(len(self.inner_left)):
-            if self.inner_right[i] != 0.0:
-                self.turn_input += 1/len(self.inner_left)/self.inner_right[i]
+            if self.inner_right[i] != 0.0 and self.inner_right[i] < 0.6:
+                self.turn_input += 1/(2*len(self.inner_left)*self.inner_right[i])
 
-            if self.inner_left[i] != 0.0:
-                self.turn_input -= 1/len(self.inner_left)/self.inner_left[i]
+            if self.inner_left[i] != 0.0 and self.inner_left[i] < 0.6:
+                self.turn_input -= 1/(2*len(self.inner_left)*self.inner_left[i])
 
-        for i in range(len(self.outer_right)):
-            if self.outer_left[i] != 0.0:
-                self.turn_input += 0.1/len(self.outer_right)/self.outer_left[i]
-
-            if self.outer_right[i] != 0.0:
-                self.turn_input -= 0.1/len(self.outer_right)/self.outer_right[i]
-
-        msg.angular.z = self.turn_input
+        
             
-        if self.smallest_dist > 0.3:
+        if self.smallest_dist < 0.4:
+            self.trapped = True
+            msg.linear.x = -self.smallest_dist*0.1
+            msg.angular.z = -self.turn_input
+        elif not self.trapped:
             msg.linear.x = self.smallest_dist*0.1
+            msg.angular.z = self.turn_input
+        elif self.smallest_dist > 0.5:
+            self.trapped = False
+        else: 
+            msg.linear.x = -self.smallest_dist*0.1
+            msg.angular.z = -self.turn_input
 
         # print(self.smallest_dist)
         
@@ -63,7 +63,6 @@ def main():
     node = ObstacleAvoiderNode()
     rclpy.spin(node)
     rclpy.shutdown()
-    print('works')
 
 if __name__ == '__main__':
     main()
